@@ -36,8 +36,10 @@ public class AntController {
 				try {
 					iDriver = new PhantomJSDriver(dcap);
 					iDriver.get(e.getText());
+					sb.append("<h3>");
 					sb.append(iDriver.findElement(By.cssSelector("h1[class='title']")).getText());
-					sb.append("<br />");
+					sb.append("<h3 />");
+					sb.append("<br /><br />");
 					sb.append(iDriver.findElement(By.cssSelector("div[id^='content-body-']")).getText());
 					sb.append("<br /><br />");
 					iDriver.quit();
