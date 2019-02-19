@@ -18,15 +18,18 @@ public class UrlSourceReader implements SourceReader {
 	private static String url;
 	private static List<String> cssSelectors = new ArrayList<String>();
 	private static String phantomPath;
-	private static List<NewsStorie> newsStories = new ArrayList<NewsStorie>();;
+	private static List<NewsStorie> newsStories = new ArrayList<NewsStorie>();
 	
 	@Override
 	public void sourceInitilizer() {
 		// TODO Auto-generated method stub
+		this.newsStories.clear();
+		this.cssSelectors.clear();
 		this.url = "http://www.thehindu.com/news/cities/chennai/feeder/default.rss";
 		this.cssSelectors.add("h1[class='title']");
 		this.cssSelectors.add("div[id^='content-body-']");
 		this.phantomPath = "G:\\sw\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe";
+		
 	}
 
 	@Override
