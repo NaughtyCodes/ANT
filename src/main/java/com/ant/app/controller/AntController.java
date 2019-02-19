@@ -39,7 +39,7 @@ public class AntController {
 					sb.append(iDriver.findElement(By.cssSelector("h1[class='title']")).getText());
 					sb.append("<br />");
 					sb.append(iDriver.findElement(By.cssSelector("div[id^='content-body-']")).getText());
-					sb.append("<br />");
+					sb.append("<br /><br />");
 					iDriver.quit();
 					i++;
 					//break;
