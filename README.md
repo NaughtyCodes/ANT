@@ -15,22 +15,5 @@ What is there in the present world similar or close to ANT ?
 What is the new solution we are going to provide ?
  
 Todo:
- 
-<Functional Requirement>
- 
-ANT : High Level Design
 
-<Flow Details / Usage>
- 
-<Low Level Design>
-Technical justification for using technologies 
- 
-<Project Structure And Modules Details>
- 
-<Class Diagram / Service Design>
- 
-<Class File Explanation>
- 
-<Sequence Diagram>
- 
-<Infrastructure Details>
+### https://github.com/NaughtyCodes/ANT/wiki
