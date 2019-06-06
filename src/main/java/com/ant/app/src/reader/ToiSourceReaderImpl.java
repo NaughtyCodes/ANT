@@ -1,4 +1,6 @@
-package com.ant.app.utils;
+package com.ant.app.src.reader;
+
+import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,26 +12,33 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import com.ant.app.config.AppProperties;
 import com.ant.app.domain.NewsStorie;
 
-public class UrlSourceReader implements SourceReader {
+@Component
+public class ToiSourceReaderImpl implements SourceReader {
+	
+	@Autowired
+	AppProperties appProperties;
 
 	private static String url;
-	private static List<String> cssSelectors = new ArrayList<String>();
 	private static String phantomPath;
+	private static String webDriverParam;
+	private static List<String> cssSelectors = new ArrayList<String>();
 	private static List<NewsStorie> newsStories = new ArrayList<NewsStorie>();
-	
+
 	@Override
 	public void sourceInitilizer() {
 		// TODO Auto-generated method stub
-		this.newsStories.clear();
-		this.cssSelectors.clear();
-		this.url = "http://www.thehindu.com/news/cities/chennai/feeder/default.rss";
-		this.cssSelectors.add("h1[class='title']");
-		this.cssSelectors.add("div[id^='content-body-']");
-		this.phantomPath = "G:\\sw\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe";
-		
+		newsStories.clear();
+		webDriverParam = this.appProperties.getWebDriverParam();
+		url = this.appProperties.getAppSrcToiUrl();
+		cssSelectors = this.appProperties.getToiCssSelectors();
+		phantomPath = this.appProperties.getAppPhantomPath();
 	}
 
 	@Override
@@ -39,25 +48,25 @@ public class UrlSourceReader implements SourceReader {
 		WebDriver iDriver = null;
 		WebDriver driver = null;
 		DesiredCapabilities dcap = new DesiredCapabilities();
-		String[] phantomArgs = new String[] { "--webdriver-loglevel=NONE" };
+		String[] phantomArgs = new String[] { this.appProperties.getWebDriverParam() };
 		dcap.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, phantomArgs);
 
-		File file = new File(this.phantomPath);
+		File file = new File(phantomPath);
 		System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
 		driver = new PhantomJSDriver(dcap);
-		driver.get(this.url);
+		driver.get(url);
 		int i = 0;
 		for (WebElement e : driver.findElements(By.tagName("link"))) {
 			System.out.println(e.getText());
 			NewsStorie ns = new NewsStorie();
-			if (!e.getText().contentEquals("https://www.thehindu.com/") && (i<=2)) {
+			if (i<=2) {
 				try {
 					iDriver = new PhantomJSDriver(dcap);
 					iDriver.get(e.getText());
-					ns.setHeading(iDriver.findElement(By.cssSelector(this.cssSelectors.get(0))).getText());
-					ns.setMessage(iDriver.findElement(By.cssSelector(this.cssSelectors.get(1))).getText());
+					ns.setHeading(iDriver.findElement(By.cssSelector(cssSelectors.get(0))).getText());
+					ns.setMessage(iDriver.findElement(By.cssSelector(cssSelectors.get(1))).getText());
 					ns.setImage("");
-					this.newsStories.add(ns);
+					newsStories.add(ns);
 					iDriver.quit();
 					i++;
 				} catch (Exception exception) {
@@ -72,7 +81,7 @@ public class UrlSourceReader implements SourceReader {
 	@Override
 	public List<NewsStorie> getNewsStories() {
 		// TODO Auto-generated method stub
-		return this.newsStories;
+		return newsStories;
 	}
 	
 	
