@@ -16,6 +16,9 @@ public class AppProperties {
 	@Value("${app.phantomPath}")
 	private String appPhantomPath;
 	
+	@Value("${app.chromePath}")
+	private String appChromePath;
+	
 	@Value("${app.webDriverParam}")
 	private String webDriverParam;
 	
@@ -32,6 +35,14 @@ public class AppProperties {
 	private List<String> toiCssSelectors;
 	
 	
+	public String getAppChromePath() {
+		return appChromePath;
+	}
+
+	public void setAppChromePath(String appChromePath) {
+		this.appChromePath = appChromePath;
+	}
+
 	public String getAppSrcToiUrl() {
 		return appSrcToiUrl;
 	}
