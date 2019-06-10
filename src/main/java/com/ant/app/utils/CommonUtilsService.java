@@ -45,8 +45,10 @@ public class CommonUtilsService {
 				DesiredCapabilities dcap = new DesiredCapabilities();
 				String[] phantomArgs = new String[] { this.appProperties.getWebDriverParam() };
 				dcap.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, phantomArgs);
-				File file = new File(this.appProperties.getAppPhantomPath());
-				System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
+				if(System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
+					File file = new File(this.appProperties.getAppPhantomPath());
+					System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
+				}
 				driver = new PhantomJSDriver(dcap);
 				break;
 			default:

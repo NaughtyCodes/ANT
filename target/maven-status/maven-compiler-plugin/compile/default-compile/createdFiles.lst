@@ -4,7 +4,7 @@ com\ant\app\config\BatchConfig.class
 com\ant\app\utils\StaticNames.class
 com\ant\app\domain\NewsStorie.class
 META-INF\spring-configuration-metadata.json
-org.codehaus.plexus.compiler.javac.JavacCompiler4559932063216734742arguments
+org.codehaus.plexus.compiler.javac.JavacCompiler3719329553007162471arguments
 com\ant\app\tasks\MyTaskOne.class
 com\ant\app\src\reader\ToiSourceReaderImpl.class
 com\ant\app\config\Swagger2UiConfiguration.class
