@@ -22,8 +22,8 @@ CMD [“echo”,”==> java installed”]
 WORKDIR /
 #COPY analysis-news-and-time-0.0.1-SNAPSHOT.jar analysis-news-and-time-0.0.1-SNAPSHOT.jar
 #ADD https://github.com/NaughtyCodes/ANT/blob/master/target/analysis-news-and-time-0.0.1-SNAPSHOT.jar analysis-news-and-time-0.0.1-SNAPSHOT.jar
-RUN wget https://github.com/NaughtyCodes/ANT/blob/master/target/analysis-news-and-time-0.0.1-SNAPSHOT.jar
-ADD analysis-news-and-time-0.0.1-SNAPSHOT.jar analysis-news-and-time-0.0.1-SNAPSHOT.jar
+#RUN wget https://github.com/NaughtyCodes/ANT/blob/master/target/analysis-news-and-time-0.0.1-SNAPSHOT.jar
+ADD ./ANT/target/*.jar analysis-news-and-time-0.0.1-SNAPSHOT.jar
 RUN ls -lrt
 RUN chmod 777 analysis-news-and-time-0.0.1-SNAPSHOT.jar
 #RUN mv analysis-news-and-time-0.0.1-SNAPSHOT.jar /analysis-news-and-time-0.0.1-SNAPSHOT.jar
