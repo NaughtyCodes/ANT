@@ -64,9 +64,9 @@ public class AntController {
 	
 	@RequestMapping("/prop")
 	public String readProp() {
-		System.out.println(appProperties.getHinduCssSelectors().size());
-		System.out.println(appProperties.getHinduCssSelectors().get(0));
-		System.out.println(appProperties.getHinduCssSelectors().get(1));
+		logger.info(appProperties.getHinduCssSelectors().size()+"");
+		logger.info(appProperties.getHinduCssSelectors().get(0));
+		logger.info(appProperties.getHinduCssSelectors().get(1));
 		return appProperties.getWebDriverParam();
 	}
 
