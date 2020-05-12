@@ -1,5 +1,13 @@
-/target/
+#/target/
 !.mvn/wrapper/maven-wrapper.jar
+/target/analysis-news-and-time-0.0.1-SNAPSHOT.jar.original
+/target/classes/META-INF/spring-configuration-metadata.json
+/target/classes/com/
+/target/maven-archiver/
+/target/maven-status/
+/target/surefire-reports/
+/target/test-classes/
+
 
 ### STS ###
 .apt_generated
